@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/web-git/static/js/main.77e1d68d.chunk.js",
+    "main.js.map": "/web-git/static/js/main.77e1d68d.chunk.js.map",
+    "runtime~main.js": "/web-git/static/js/runtime~main.80c17e7e.js",
+    "runtime~main.js.map": "/web-git/static/js/runtime~main.80c17e7e.js.map",
+    "static/js/2.c08c8098.chunk.js": "/web-git/static/js/2.c08c8098.chunk.js",
+    "static/js/2.c08c8098.chunk.js.map": "/web-git/static/js/2.c08c8098.chunk.js.map",
+    "index.html": "/web-git/index.html",
+    "precache-manifest.315dcbe24d89451e568e0676850429e2.js": "/web-git/precache-manifest.315dcbe24d89451e568e0676850429e2.js",
+    "service-worker.js": "/web-git/service-worker.js"
+  }
+}
