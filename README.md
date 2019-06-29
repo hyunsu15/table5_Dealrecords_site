@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+//## 큰제목 ### 소제목
 
-## Available Scripts
+##제목: 맞춤거래기록부
 
-In the project directory, you can run:
+테이블 5개까지 거래기록부
 
-### `npm start`
+## 개발동기
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+현재 부모님이 자영업을 하심. 
+거래일지를 엑셀로 문서화하심.
+하지만 부모님 연세가 있으신지라 엑셀의 많은 기능을 활용 못함. 
+그래서 부모님을 맞춤으로 필요한 기능만 넣고, 보기 편한 거래기록부를 만드는 것을 생각하게 됨.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 디자인모티브
+![image](https://user-images.githubusercontent.com/48500411/60383153-60291880-9aa8-11e9-8d3d-0aa21626cf56.png)
 
-### `npm run build`
+배달어플 영수증은 개인정보, 제품설명등 잘 나와있음.
+이런 모양으로 기록부가 보이게 하는 것을 목표로 삼음.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 아쉬운 점 및 특이사항
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### 1
+ 테이블이 5개라 모든 테이블의 CRUD 연산을 다 만들지 못함.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2
+로그아웃기능과 페이징은 따로 만들지않음.
 
-### `npm run eject`
+### 3
+새로고침하면 로그인을 다시하게 만들어놓음.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 관련사이트 들어가기
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+홈페이지주소: (추가예정)
 
-## Learn More
+DB 주소: https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+DB관리자 주소: https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev/_admin

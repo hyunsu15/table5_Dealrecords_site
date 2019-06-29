@@ -1,9 +1,10 @@
-import React,{useState} from "react";
-import { Redirect } from 'react-router'
+import React,{useState, useContext} from "react";
+
 import { useQuery } from 'react-apollo-hooks';
 import {Login_Query} from "../schema/Queries";
 import {Typography,Button,Grid,TextField} from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
+import {Store} from "../Store";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -31,8 +32,9 @@ const Login=()=>{
     const [challenge,setChallenge]=useState("");
     const [isOpen,setIsOpen]=useState(false);
     const { data, error, loading } = useQuery(Login_Query);
+    const [choose,setChoose]= useContext(Store)
     const _compare=()=>{
-        if(isOpen) return <Redirect to ="/main"/>
+    if(isOpen) setChoose(1)
     else if(count !=1) return<h3>Login failed</h3>  
     }
     const _passwordTextField=()=>{

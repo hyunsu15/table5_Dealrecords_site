@@ -8,7 +8,8 @@ import ApolloClient from "apollo-boost";
 const client =  new ApolloClient({
   uri: "https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev/"
 });
- // create Apollo client
+
+// create Apollo client
 
  ReactDOM.render(
   <ApolloProvider client={client}>

@@ -1,47 +1,85 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import {useMutation} from "react-apollo-hooks";
 import {ChangeTrueIsDeliver} from "../schema/Mutation";
 import {ChangeFalseIsDeliver} from "../schema/Mutation";
 import {ChangeFalseIsAllPay} from "../schema/Mutation";
-import {TButton,Checkbox,Grid,Button,Box} from '@material-ui/core/';
-import { grey } from "@material-ui/core/colors";
+import {Grid,Button,Box} from '@material-ui/core/';
+import {Store,ModifyDealID,varyIsAllPayInfo,optimalRequest} from "../Store"; 
 
- function CheckBox({isDeliver,isAllPay,ID}){
+ function CheckBox({isDeliver,ID}){
+    const [varyIsAllPay,setVaryAllPay]= useContext(varyIsAllPayInfo)
+
+
     const [checkBox,setCheckBox]= useState({
         value1:isDeliver,
-        value2:isAllPay,
+        value2:varyIsAllPay,
     });
+    const [originalState,setOrigin] = useState(varyIsAllPay);
+    //context
+    const [DealID,setDealID]= useContext(ModifyDealID);
+    const [,setAppChoose]=useContext(Store)
+    const [optimalReq,setOptimalReq]= useContext(optimalRequest);
+    
+    
+    //쿼리
     const changeTrueDeliver= useMutation(ChangeTrueIsDeliver)
     const changeFalseDeliver = useMutation(ChangeFalseIsDeliver)
     const changeFalseAllPay = useMutation(ChangeFalseIsAllPay)
+    
+
+
     const _ChangeState=()=>{
-      
-        if(!checkBox.value1&&!checkBox.value2){changeFalseDeliver({variables:{ID:ID}});changeFalseAllPay({variables:{ID:ID}})}
-        if(!checkBox.value1&&checkBox.value2){changeFalseDeliver({variables:{ID:ID}}); window.open("https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev/_admin",'_blank')}
-        if(checkBox.value1&&!checkBox.value2){changeTrueDeliver({variables:{ID:ID}});changeFalseAllPay({variables:{ID:ID}})}
-        if(checkBox.value1&&checkBox.value2){changeTrueDeliver({variables:{ID:ID}}); window.open("https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev/_admin",'_blank')}
-         return window.location.reload();
+       if(!checkBox.value1) changeFalseDeliver({variables:{ID:ID}})
+       else changeTrueDeliver({variables:{ID:ID}})
+        if(originalState==checkBox.value2);
+       else if(originalState&&!checkBox.value2){setVaryAllPay(false);changeFalseAllPay({variables:{ID:ID}})}
+        else {setDealID(ID);setAppChoose(2)}
+       {optimalReq==0&&setOptimalReq(1)} 
     }  
-    function checkBoxList() {
-        return <Grid container justify="center" >
-                    <Box container ="span" >
-                    배달 반전<input type="checkbox" name="isDeliver" value="배달" onClick={() => { setCheckBox({ ...checkBox, value1: !checkBox.value1 }); }} />
-                    결제반전<input type="checkbox" name="isPay" value="결제" onClick={() => {
+    const checkBoxList=() =>{
+        const _unCheckBox =()=>{
+            let obj = document.getElementsByName("checkbox1");
+            for(let i=0;i<obj.length;i++)
+                if(obj[i].checked=true)obj[i].checked=false;         
+        }
+        function onClick (){
+            _ChangeState();
+            _unCheckBox()
+            
+        }
+      
+        return <Grid container justify="center">
+                    <Box container ="span">
+                    배달반전<input type="checkbox" name="checkbox1" value="배달" onChange={() => { setCheckBox({ ...checkBox, value1: !checkBox.value1 }); }} />
+                    결제반전<input type="checkbox" name="checkbox1" value="결제" onChange={() => { 
                         setCheckBox({ ...checkBox, value2: !checkBox.value2 });
                     }} />
-                    <Button style={{ fontWeight: "bold" }} onClick={() => { _ChangeState(); }}> 저장</Button>
+                    <Button style={{ fontWeight: "bold" }} onClick={onClick}>저장</Button>
                     </Box>
                 </Grid>;
     }
+    
     return(
         <React.Fragment>
+        
+        {console.log("원상태"+originalState+" 반전?"+checkBox.value2)}
+        
         {checkBoxList()}
         </React.Fragment>
     )
 
-    
+
+
+
 }
+    
+    
+
+
 
 
 
 export default CheckBox;
+
+
+

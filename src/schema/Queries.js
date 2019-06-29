@@ -7,10 +7,7 @@ export const Login_Query = gql`
             password
         }
     }
-
 `; 
-
-
 export const isDeliverList=gql`
      {
         deals(where:{isDeliver: false},orderBy:address_DESC){
@@ -22,7 +19,6 @@ export const isDeliverList=gql`
         }
         productNum
         productCost
-        
         isDeliver
         payPerson{
           payPerson
@@ -33,7 +29,6 @@ export const isDeliverList=gql`
           userName
           userPhonNumber
         }        
-  
     }
   
   }
@@ -90,3 +85,15 @@ export const notBothList=gql`
     }
 
 `;
+export const  payPerson_List =gql`
+  {
+    payPersons 
+    {
+      ID
+      bank
+      payPerson
+    }
+  }
+
+
+`
