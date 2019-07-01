@@ -12,7 +12,6 @@ const [optimunReq,setOptimunReq]= useContext(optimalRequest);
 return(
     <React.Fragment>
         {optimunReq==0&&setOptimunReq(1)}
-        {console.log("삭제버튼에서 이거는?"+optimunReq)}
         <Button   style={{fontWeight:"bold",fontSize:'20px'}}onClick= {(e)=>{deleteDeal({variables:{ID:ID}})}}> 삭제</Button>
     </React.Fragment>
 )

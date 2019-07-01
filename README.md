@@ -26,11 +26,12 @@
  2. 로그아웃기능과 페이징은 따로 만들지않음.  
   
  3. 새로고침하면 로그인을 다시하게 만들어놓음.  
-  
+
+ 4.  
   
 ## 관련사이트 들어가기
 
-홈페이지주소: https://hyunsu15.github.io/web-git/  
+홈페이지주소: https://table5dealrecords.herokuapp.com/  
   
   
 DB 주소: https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev/  

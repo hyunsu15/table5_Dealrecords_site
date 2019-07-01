@@ -61,9 +61,6 @@ import {Store,ModifyDealID,varyIsAllPayInfo,optimalRequest} from "../Store";
     
     return(
         <React.Fragment>
-        
-        {console.log("원상태"+originalState+" 반전?"+checkBox.value2)}
-        
         {checkBoxList()}
         </React.Fragment>
     )

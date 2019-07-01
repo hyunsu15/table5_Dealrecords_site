@@ -12,7 +12,6 @@ function ConnectPayPerson (){
     return (
         <React.Fragment>
         {PayPersonList(choose,setChoose)}
-        {console.log(choose)}
         </React.Fragment>
     )
 }
