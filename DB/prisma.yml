@@ -1,0 +1,6 @@
+endpoint: https://db-layer-de1a8af52f.herokuapp.com/data-layer/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/

@@ -1,0 +1,36 @@
+type Deal{
+    ID: ID! @id 
+    address:String!
+    product: Product!
+    productNum: String!
+    productCost: Int!
+    payPerson : PayPerson!
+    user: User!
+    admin:Admin!
+    isDeliver: Boolean@default(value: false)
+    createdAt: DateTime @createdAt
+}
+type Admin{
+  ID: ID! @id
+  name: String!
+  password:String!  
+}
+
+type User{
+  ID: ID! @id
+  userName: String!
+  userPhonNumber: String! 
+}
+
+type PayPerson{
+  ID: ID! @id
+  bank: String!
+  payPerson: String!
+  isAllPay: Boolean!@default(value: true)
+}
+type Product{
+  ID:ID! @id
+  productName : String!
+  productLotNumber:String!
+  isNow: Boolean@default(value:true)
+}
