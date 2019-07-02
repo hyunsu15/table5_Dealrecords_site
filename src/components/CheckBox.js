@@ -48,7 +48,7 @@ import {Store,ModifyDealID,optimalRequest,v1Info} from "../Store";
     return(
         <React.Fragment>
             {checkBoxList(checkBox,setCheckBox,onClick)}
-        {console.log(checkBox)}
+        
         </React.Fragment>
         )
 

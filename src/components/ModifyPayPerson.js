@@ -65,7 +65,7 @@ function  ModifyPayPerson(){
     
     return (
     <React.Fragment>
-        {console.log(v1)}
+       
     <Header name ={"결제자수정"}/>
     <ModifyTabStore.Provider value ={[choose,setChoose]}>
     <CreateTabs array={["생성","연결"]} fx={ModifyTabStore}/>
