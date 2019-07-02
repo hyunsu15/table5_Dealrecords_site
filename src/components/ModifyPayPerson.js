@@ -4,9 +4,9 @@ import CreateTabs from "./CreateTabs";
 import {ModifyTabStore} from "../Store"
 import CreatePayPerson from "./CreatePayPerson";
 import {Grid,Paper,Button} from '@material-ui/core'
-import {Store,CreateBankInfo,CreatePayPersonInfo,ModifyDealID,ConnectPayPersonID,varyIsAllPayInfo} from "../Store"
+import {Store,CreateBankInfo,CreatePayPersonInfo,ModifyDealID,ConnectPayPersonID,v1Info} from "../Store"
 import {useMutation} from "react-apollo-hooks";
-import {CreatePayPerson_Mutation,UpdateIsAllPay} from "../schema/Mutation";
+import {CreatePayPerson_Mutation,UpdateIsAllPay,ChangeFalseIsDeliver,ChangeTrueIsDeliver} from "../schema/Mutation";
 import ConnectPayPerson from "./ConnectPayPerson";
 
 
@@ -17,14 +17,22 @@ function  ModifyPayPerson(){
     const [bank,setBank]= useState("");  
     const [connectPayPerson,setConnectPayPerson]=useState("");
     
-    const [,setOriginState]= useContext(varyIsAllPayInfo)
+    
+    
+    const [v1,setV1]= useContext(v1Info)
     const [appChoose,setAppChoose]= useContext(Store)
     const [DealID,setDealID]= useContext(ModifyDealID);
-     
+
+
     
     
     const createPayPerson=useMutation(CreatePayPerson_Mutation);
     const updateIsAllPay= useMutation(UpdateIsAllPay);
+
+    const changeTrueDeliver= useMutation(ChangeTrueIsDeliver)
+    const changeFalseDeliver = useMutation(ChangeFalseIsDeliver)
+   
+
 
 
     function _controller(){
@@ -37,22 +45,27 @@ function  ModifyPayPerson(){
         if(choose==1) //연결
         return <ConnectPayPerson/>
     } 
-    function _saveClick(){
+   function _saveClick(){
+        if(v1) changeTrueDeliver({variables:{ID:DealID}})
+        else changeFalseDeliver({variables:{ID:DealID}})
+        
         if(choose==0){  
+            
             let ID=createPayPerson({variables:{bank:bank,payPerson:name}})
             ID.then(function(result){
                 updateIsAllPay({variables:{PayPerson:result.data.createPayPerson.ID,Deal:DealID}})//만든 결제자 ID
             })               
+            
         }
         if(choose==1) {
             updateIsAllPay({variables:{PayPerson:connectPayPerson,Deal:DealID}})
         }
-
-        return setOriginState(true)
-
     }
+   
+    
     return (
     <React.Fragment>
+        {console.log(v1)}
     <Header name ={"결제자수정"}/>
     <ModifyTabStore.Provider value ={[choose,setChoose]}>
     <CreateTabs array={["생성","연결"]} fx={ModifyTabStore}/>

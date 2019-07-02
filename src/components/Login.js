@@ -56,13 +56,7 @@ const Login=()=>{
           </div>    
     }
     const classes = useStyles();
-    const _HeaderText=()=>{
-      return <div>
-      <Typography variant="h2"align ="center" gutterBottom>
-      Login
-    </Typography><br/>
-    </div>
-    }
+   
     const _loginButton=()=>{
       return <div>
         <Button onClick={(e)=>{
@@ -86,12 +80,17 @@ const Login=()=>{
               <Grid container justify="center" alignItems="center" alignContent="center" >        
               {_compare()}
               </Grid > 
-              
         </React.Fragment>
     );
     
 };
-
+const _HeaderText=()=>{
+  return <div>
+  <Typography variant="h2"align ="center" gutterBottom>
+  Login
+</Typography><br/>
+</div>
+}
 
 
 

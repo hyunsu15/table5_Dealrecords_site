@@ -1,28 +1,32 @@
-import React,{useContext} from "react";
+import React,{useContext,useState} from "react";
 import DealDelete from "./DealDelete";
 import CheckBox from "./CheckBox";
 import {Typography,Grid,Table,TableRow,TableCell,TableBody,Box} from '@material-ui/core/';
-
+import {ModifyDealID} from "../Store"
 import grey from '@material-ui/core/colors/grey';
-import {varyIsAllPayInfo} from '../Store';
 
 
+                    
+const changeState=(props,checkBox,setCheckBox)=>{
+    if(checkBox.value1!=props.isDeliver) return setCheckBox({...checkBox,value1:props.isDeliver})
+    if(checkBox.originV2!=props.isAllPay) return setCheckBox({...checkBox,originV2:props.AllPay})
+
+}
 
 
 
 function Deal(props){
-    const [varyIsAllPay,setVaryAllPay]= useContext(varyIsAllPayInfo);
+    
+    const [modifyDealID,setDealID]= useContext(ModifyDealID);
+    
     return(
-        <React.Fragment>
-            <Box container ={props.ID} p={2} m={1}style={{backgroundColor:grey[50]}}>
+        <React.Fragment>        
+            
+                <Box container ={props.ID} p={2} m={1}style={{backgroundColor:grey[50]}}>
                 <Grid container  justify="flex-end"><DealDelete ID={props.ID} /></Grid>
                 <Grid container justify ="center">
-                    {_textDealList(props)}
-                    {props.isAllPay!=varyIsAllPay&&setVaryAllPay(props.isAllPay)}
-                    {props.isAllPay==varyIsAllPay&&<varyIsAllPayInfo.Provider value ={[varyIsAllPay,setVaryAllPay]}>               
-                    <CheckBox isDeliver={props.isDeliver} ID={props.ID}/>            
-                    </varyIsAllPayInfo.Provider>
-                    }
+                    {_textDealList(props)}                     
+                    <CheckBox isAllPay={props.isAllPay} isDeliver ={props.isDeliver}ID= {props.ID}/>
                 </Grid>
             </Box>
      </React.Fragment>
@@ -31,15 +35,15 @@ function Deal(props){
 
 export default Deal;
 
-const _textDealList=(props)=>{
-    const createTableRow=(par1,par2,par3)=> {
-        return <TableRow>
-            <TableCell align="center">{par1}</TableCell>
-            <TableCell align="center">{par2}</TableCell>
-            <TableCell align="center">{par3}</TableCell>
-        </TableRow>;
-    }
-    const _TableBody=()=>{
+const createTableRow=(par1,par2,par3)=> {
+    return <TableRow>
+        <TableCell align="center">{par1}</TableCell>
+        <TableCell align="center">{par2}</TableCell>
+        <TableCell align="center">{par3}</TableCell>
+    </TableRow>;
+}
+
+ const _TableBody=(props)=>{
         return<TableBody>
                     {createTableRow("제품","수량","가격")}
                     {createTableRow(props.productName,props.productNum,props.productCost)}
@@ -47,13 +51,14 @@ const _textDealList=(props)=>{
                     {createTableRow("결제자",props.bank=="미정"||props.bank=="직거래"? props.bank:props.bank+"은행",props.payPerson)}                        
                 </TableBody>
     }
-    
-
-    const _priceList=()=> {
+    const _priceList=(props)=> {
         return<Table>
-                {_TableBody()}
+                {_TableBody(props)}
             </Table>        
     }
+
+
+const _textDealList=(props)=>{
     
 
     return <Grid >
@@ -66,7 +71,7 @@ const _textDealList=(props)=>{
         <Typography variant="body1" align='center' gutterBottom>
             구매자:{props.userName}/{props.userPhonNumber}
         </Typography>
-        {_priceList()}
+        {_priceList(props)}
         <Typography variant="body1"align='center' gutterBottom>
             배달현황: {props.isDeliver || false ? "o" : "x"}&nbsp; 결제현황: {props.isAllPay || false ? "o" : "x"}
         </Typography>

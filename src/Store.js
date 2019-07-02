@@ -2,7 +2,6 @@ import React from "react";
 
 export const Store = React.createContext([0,()=>{}]);
 
-export const checkBoxStore = React.createContext([true,()=>{}]);
 
 export const MainTabStore =React.createContext([0,()=>{}]);
 
@@ -18,7 +17,8 @@ export const ModifyDealID=React.createContext(["",()=>{}]);
 
 export const ConnectPayPersonID=React.createContext(["",()=>{}]);
 
-export const varyIsAllPayInfo = React.createContext([false,()=>{}]);
-
 
 export const optimalRequest= React.createContext([1,()=>{}]);
+
+
+export const v1Info =React.createContext([1,()=>{}]);
